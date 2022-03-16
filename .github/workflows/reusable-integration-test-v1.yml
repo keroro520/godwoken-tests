@@ -39,6 +39,8 @@ on:
   push:
     branches:
     - 'v1'
+    # FIXME
+    - 'deposit-our-accounts'
   pull_request:
     branches:
     - develop
