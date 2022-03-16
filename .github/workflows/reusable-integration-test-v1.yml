@@ -39,6 +39,7 @@ on:
   push:
     branches:
     - 'v1'
+    - 'kicker-script'
   pull_request:
     branches:
     - develop
