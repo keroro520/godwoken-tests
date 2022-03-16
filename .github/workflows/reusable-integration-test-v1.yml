@@ -61,9 +61,11 @@ jobs:
     - name: Checkout Kicker # multiple repos (nested)
       uses: actions/checkout@v3
       with:
-        repository: RetricSu/godwoken-kicker
+        # FIXME
+        repository: keroro520/godwoken-kicker
         # If this workflow is not triggered by workflow_call event, inputs.kicker_ref is empty.
-        ref: ${{ inputs.kicker_ref || 'compatibility-changes' }}
+        # FIXME
+        ref: ${{ inputs.kicker_ref || 'kicker-deposit' }}
         path: kicker
         submodules: 'recursive'
 
@@ -185,7 +187,9 @@ jobs:
 
     - name: Deposit for 2 dev accounts
       working-directory: kicker
-      run: source ./gw_util.sh && deposit_for_two_dev_accounts
+      run: |
+        ./kicker deposit 0x966B30e576A4d6731996748B48Dd67C94eF29067 1000
+        ./kicker deposit 0x4fef21f1d42e0d23d72100aefe84d555781c31bb 1000
 
     - uses: actions/setup-node@v2
       with:
