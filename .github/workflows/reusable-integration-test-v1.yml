@@ -3,6 +3,9 @@ name: Integration Test v1
 on:
   workflow_call:
     inputs:
+      kicker_pre_execute_command:
+        type: string
+        description: 'Execute the command in advance before every kicker command'
       kicker_ref:
         type: string
         description: 'The reference of https://github.com/RetricSu/godwoken-kicker.git'
@@ -159,7 +162,7 @@ jobs:
         docker system df -v
         docker-compose --version
         set -a && source docker/.build.mode.env
-        ./kicker init
+        eval ${{ inputs.kicker_pre_execute_command }} ; ./kicker init
 
     - name: Start Godwoken-Kicker services
       timeout-minutes: 45
