@@ -43,7 +43,8 @@ jobs:
     steps:
     - name: Update GITHUB_ENV if inputs.extra_github_env set
       if: "${{ inputs.extra_github_env != '' }}"
-      run: echo ${{ inputs.extra_github_env }} >> $GITHUB_ENV
+      run: |
+        echo "${{ inputs.extra_github_env }}" >> $GITHUB_ENV
 
     # Check multiple repos (nested)
     # see: https://github.com/actions/checkout#checkout-multiple-repos-nested
