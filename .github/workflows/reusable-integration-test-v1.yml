@@ -43,14 +43,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Update GITHUB_ENV if inputs.extra_github_env set
-      if: "${{ inputs.extra_github_env != '' }}"
       run: |
         echo "${{ inputs.extra_github_env }}" >> $GITHUB_ENV
+        echo "MANUAL_BUILD_POLYJUICE=true"    >> $GITHUB_ENV
+        echo "POLYJUICE_GIT_URL=https://github.com/keroro520/godwoken-polyjuice"  >> $GITHUB_ENV
+        echo "POLYJUICE_GIT_CHECKOUT=wip" >>  $GITHUB_ENV
 
     - name: Checkout godwoken-tests
       uses: actions/checkout@v3
       with:
-        repository: ${{ env.GODWOKEN_TESTS_REPO || 'nervosnetwork/godwoken-tests' }}
+        repository: ${{ env.GODWOKEN_TESTS_REPO || 'keroro520/godwoken-tests' }}
         ref: ${{ env.GODWOKEN_TESTS_REF || 'develop' }}
         submodules: 'recursive'
 
